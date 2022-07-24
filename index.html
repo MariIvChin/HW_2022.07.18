@@ -28,6 +28,7 @@
       align-items: center;
       column-gap: 20px;
       gap: 20px;
+      background-color: rgb(214, 240, 211);
     "
   >
     <div id="inputs-container">
@@ -40,35 +41,34 @@
       <input id="input-color" type="color" name="color" id="" /><br />
       <label for="country">Country</label><br />
       <select id="input-country">
-        <option selected>Israel</option>
-        <option>Ukraine</option>
-        <option>USA</option>
-        <option>Canada</option>
-        <option>Mexico</option>
-        <option>France</option></select
+        <option selected value=""></option>
+        <option value="Israel">Israel</option>
+        <option value="Ukraine">Ukraine</option>
+        <option value="USA">USA</option>
+        <option value="Canada">Canada</option>
+        <option value="Mexico">Mexico</option>
+        <option value="France">France</option></select
       ><br /><br />
 
       <label for="gender">Gender</label><br />
       <label for="input-female">Female</label>
-      <input checked id="input-female" type="radio" name="gender" />
+      <input id="input-female" type="radio" name="gender" />
       <label for="input-male">Male</label>
       <input id="input-male" type="radio" name="gender" /><br /><br />
-      <button onclick="setInputsInfoToUserCard()" type="button">
-        Add info to card</button
-      ><br />
+      <button onclick="handleSubmitButton()" type="button">Submit</button><br />
     </div>
-
-    <div>
-      <h4>User Card</h4>
-      <div id="user-card" class="card" style="width: 18rem">
-        <div class="card-header"><strong>User Card</strong></div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name</li>
-          <li class="list-group-item">Age</li>
-          <li class="list-group-item">Country</li>
-          <li class="list-group-item">Gender</li>
-        </ul>
-      </div>
-    </div>
+    <div
+      class="m-5"
+      style="
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 20px;
+        gap: 20px;
+      "
+      id="user-card"
+    ></div>
   </body>
 </html>

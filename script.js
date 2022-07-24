@@ -1,55 +1,93 @@
-let inputContainer = document.getElementById("inputs-container");
-let inputName = document.getElementById("input-name");
-let inputAge = document.getElementById("input-age");
-let inputColor = document.getElementById("input-color");
-let inputCountry = document.getElementById("input-country");
+const inputName = document.getElementById("input-name");
+const inputAge = document.getElementById("input-age");
+const inputColor = document.getElementById("input-color");
+const inputCountry = document.getElementById("input-country");
 
-let inputMale = document.getElementById("input-male");
-let inputFemale = document.getElementById("input-female");
+const inputMale = document.getElementById("input-male");
+const inputFemale = document.getElementById("input-female");
 
-let userCard = document.getElementById("user-card");
-console.dir(inputContainer);
+const userCard = document.getElementById("user-card");
 
-function setInputsInfoToUserCard() {
-  userCard.style.backgroundColor = inputColor.value;
-  userCard.children[1].children[0].style.background = inputColor.value;
-  userCard.children[1].children[1].style.background = inputColor.value;
-  userCard.children[1].children[2].style.background = inputColor.value;
-  userCard.children[1].children[3].style.background = inputColor.value;
-  userCard.children[1].children[0].innerHTML = "Name: " + inputName.value;
-  userCard.children[1].children[1].innerHTML = "Age: " + inputAge.value;
-  userCard.children[1].children[2].innerHTML = "Country: " + inputCountry.value;
-
-  if (document.getElementById("input-male").checked) {
-    userCard.children[1].children[3].innerHTML = "Gender: male";
-  } else if (document.getElementById("input-female").checked) {
-    userCard.children[1].children[3].innerHTML = "Gender: female";
+function handleSubmitButton() {
+  if (inputName.value.length <= "2") {
+    alert('Name must to be more than 2 char in the field "name"!');
+    return;
+  } else if (inputAge.value <= "0") {
+    alert('Please set number more than 0 in the field "age"!');
+    return;
+  } else if (inputCountry.value == "") {
+    alert("We must to know where you live! Please choose your country!");
+    return;
+  } else if (getUserGenderToUserCard() == undefined) {
+    alert("Please set your gender for complete your info for us!");
+    return;
   }
+  renderUserCardInHTML(
+    inputColor.value,
+    inputName.value,
+    inputAge.value,
+    inputCountry.value,
+    getUserGenderToUserCard()
+  );
+  resetInputs();
+}
+
+function getUserGenderToUserCard() {
+  if (inputMale.checked) {
+    return "Female";
+  } else if (inputFemale.checked) {
+    return "Male";
+  } else {
+    return;
+  }
+}
+
+function renderUserCardInHTML(color, username, age, country, gender) {
+  userCard.innerHTML +=
+    `<div>
+    <h4>User Card</h4>
+  <div class="card" style="width: 18rem; background: ` +
+    color +
+    `;">
+    <div class="card-header"><strong>` +
+    username +
+    ` (` +
+    age +
+    `)` +
+    `</strong></div>
+    <ul class="list-group list-group-flush" style="background: ` +
+    color +
+    `;">
+      <li class="list-group-item" style="background: ` +
+    color +
+    `;">Name: ` +
+    username +
+    `</li>
+      <li class="list-group-item" style="background: ` +
+    color +
+    `;">Age: ` +
+    age +
+    `</li>
+      <li class="list-group-item" style="background: ` +
+    color +
+    `;">Country: ` +
+    country +
+    `</li>
+      <li class="list-group-item" style="background: ` +
+    color +
+    `;">Gender: ` +
+    gender +
+    `</li>
+    </ul>
+  </div>
+  </div>`;
+}
+
+function resetInputs() {
   inputName.value = "";
   inputAge.value = "";
-  inputCountry.value = inputCountry.children[0].innerHTML;
+  inputCountry.value = "";
   inputColor.value = "#C9FCFD";
-  inputFemale.checked = "true";
+  inputFemale.checked = false;
+  inputMale.checked = false;
 }
-
-// if ((inputContainer.children[21].checked = "true")) {
-//   console.dir("true");
-// } else {
-//   if ((inputContainer.children[21].checked = "false")) {
-//     console.dir("false");
-//   }
-// }
-
-// if (inputMale.checked) {
-//   console.dir("Gender: Male");
-// } else if (inputFemale.checked) {
-//   console.dir("Gender: Female");
-// }
-
-if (document.getElementById("input-male").checked) {
-  console.dir("Male");
-} else if (document.getElementById("input-female").checked) {
-  console.dir("Female");
-}
-
-console.dir(inputMale.checked);
