@@ -34,9 +34,9 @@ function handleSubmitButton() {
 }
 
 function getUserGenderToUserCard() {
-  if (inputMale.checked) {
+  if (inputFemale.checked) {
     return "Female";
-  } else if (inputFemale.checked) {
+  } else if (inputMale.checked) {
     return "Male";
   } else {
     return;
